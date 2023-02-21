@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang = "sl">
+  <head>
+    <title>
+      PASSWORD GENERATOR
+    </title>
+    <style>
+      
+      .centr{
+        text-align:center;
+      }
+      
+
+
+     
+      .posligumb {
+        align-items: center;
+        background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+        border: 0;
+        border-radius: 8px;
+        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        display: flex;
+        font-family: Phantomsans, sans-serif;
+        font-size: 20px;
+        justify-content: center;
+        line-height: 1em;
+        max-width: 100%;
+        min-width: 140px;
+        padding: 3px;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+      
+      .posligumb:active,
+      .posligumb:hover {
+        outline: 0;
+      }
+      
+      .posligumb span {
+        background-color: rgb(5, 6, 45);
+        padding: 16px 24px;
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        transition: 300ms;
+      }
+      
+      .posligumb:hover span {
+        background: none;
+      }
+      
+      @media (min-width: 768px) {
+        .posligumb {
+          font-size: 24px;
+          min-width: 196px;
+        }
+      }
+      
+
+    </style>
+      
+  </head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <body>
+    <h1 class="centr">PASSWORD GENERATOR</h1>
+  
+        
+          <input onclick="dolzina()" id="size" type="range" value="2" min="8" max="32">
+          
+        </div>
+          
+          <input onclick="getPass()" type="submit" class="posligumb" value="Generate!">
+          <span id="geslo"></span>
+          <span id="dol"></span>
+  </body>
+</html>  
+ 
+<script>
+function getPass() {
+  
+  var dol = document.getElementById("size").value
+  var g = document.getElementById("geslo")
+  document.getElementById("dol").innerHTML = dol;
+  
+
+  $.ajax({
+    url: "/getPass",
+    data: {
+      pass: dol
+    },
+    success: function( result ) {
+      g.innerHTML = result
+    }
+  });
+  }
+ $.ajax({
+    url: "/dolzina",
+    data: {
+      pass: dol
+    },
+    success: function( result ) {
+      g.innerHTML = result
+    }
+  });
+  }
+
+  
+</script>
+<!-- input = length passworda -->
+<!-- gumb = za generate fukne na nasledn page -->
+<!-- nasledn page ti izpise password + en gumb za copyat -->
